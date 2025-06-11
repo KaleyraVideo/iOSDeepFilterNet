@@ -62,6 +62,16 @@ jobs:
           PACKAGE_CHECKSUM=$(grep -o 'checksum[[:space:]]*:[[:space:]]*"[^"]*"' Package.swift | sed 's/.*"\([^"]*\)".*/\1/' | head -1)
           CURRENT_CHECKSUM="${{ steps.calculate-checksum.outputs.checksum }}"
 
+          if [ -z "$PACKAGE_CHECKSUM" ]; then
+            echo "❌ Error: Package.swift checksum is empty or not found"
+            exit 1
+          fi
+
+          if [ -z "$CURRENT_CHECKSUM" ]; then
+            echo "❌ Error: Current checksum is empty"
+            exit 1
+          fi
+
           echo "Checksum in Package.swift: $PACKAGE_CHECKSUM"
           echo "Current checksum: $CURRENT_CHECKSUM"
 
