@@ -103,7 +103,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add Package.swift
-          git commit -m "Update Package.swift for release ${{ github.ref_name }}"
+          git commit -m "Update Package.swift for release ${{ steps.generate-release-name.outputs.release_name }}"
           git push
           git tag ${{ steps.generate-release-name.outputs.release_name }}
           git push origin ${{ steps.generate-release-name.outputs.release_name }}
