@@ -1,6 +1,6 @@
 # iOSDeepFilterNet
 
-This repository provides an iOS implementation of the DeepFilterNet noise suppression model with JNI bindings.
+This repository contains an unofficial distribution of DeepFilterNet framework binaries for iOS.
 
 ## Overview
 
@@ -22,13 +22,13 @@ DeepFilterNet is a state-of-the-art neural network architecture designed for rea
 ### Swift Package Manager
 You can install this package using Swift Package Manager. Add the following dependency to your Package.swift file:
 ```swift
-swiftdependencies: [
-    .package(url: "https://github.com/KaleyraVideo/iOSDeepFilterNet.git", from: "v1")
+dependencies: [
+    .package(url: "https://github.com/KaleyraVideo/iOSDeepFilterNet.git", branch: "main")
 ]
 ```
 Then add the package to your target dependencies:
 ```swift
-swifttargets: [
+targets: [
     .target(
         name: "DeepFilterNet",
         dependencies: ["DeepFilterNet"]
