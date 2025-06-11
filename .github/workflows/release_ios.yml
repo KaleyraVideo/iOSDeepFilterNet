@@ -45,19 +45,16 @@ jobs:
         with:
           repository: KaleyraVideo/DeepFilterNet
           run-id: ${{ steps.get_run_id.outputs.result }}
-          name: DeepFilterNet.xcframework
-          path: ./Binaries/DeepFilterNet.xcframework
+          name: Binaries
+          path: ./downloaded-artifacts/Binaries
           github-token: ${{ github.token }}
-
-      - name: Zip XCFramework
-        working-directory: ./Binaries
-        run: |
-          find DeepFilterNet.xcframework -exec touch -t 202301010000 {} \;
-          zip -r -X DeepFilterNet.xcframework.zip DeepFilterNet.xcframework
 
       - name: Calculate Checksum
         id: calculate-checksum
-        run: echo "checksum=$(swift package compute-checksum ./Binaries/DeepFilterNet.xcframework.zip)" >> $GITHUB_OUTPUT
+        working-directory: ./downloaded-artifacts/Binaries
+        run: |
+            ls -al;
+            echo "checksum=$(swift package compute-checksum ./DeepFilterNet.xcframework.zip)" >> $GITHUB_OUTPUT;
 
       - name: Check if framework changed since last release
         id: check-if-should-release
@@ -80,7 +77,7 @@ jobs:
         id: generate-release-name
         if: steps.check-if-should-release.outputs.should_release == 'true'
         run: |
-          RELEASE_NAME="v${{ github.run_number }}"
+          RELEASE_NAME="0.0.${{ github.run_number }}"
           echo "release_name=$RELEASE_NAME" >> $GITHUB_OUTPUT
 
       - name: Update Package.swift
@@ -118,6 +115,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Binaries/DeepFilterNet.xcframework.zip
+          asset_path: ./downloaded-artifacts/Binaries/DeepFilterNet.xcframework.zip
           asset_name: DeepFilterNet.xcframework.zip
           asset_content_type: application/zip
