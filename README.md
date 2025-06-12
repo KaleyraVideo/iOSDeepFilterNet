@@ -30,8 +30,10 @@ Then add the package to your target dependencies:
 ```swift
 targets: [
     .target(
-        name: "DeepFilterNet",
-        dependencies: ["DeepFilterNet"]
+        name: "YourTargetName",
+        dependencies: [
+            .product(name: "DeepFilterNet", package: "iOSDeepFilterNet")
+        ]
     )
 ]
 ```
