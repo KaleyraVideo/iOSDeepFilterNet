@@ -13,8 +13,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "DeepFilterNet",
-            url: "https://github.com/KaleyraVideo/iOSDeepFilterNet/releases/download/0.0.30/DeepFilterNet.xcframework.zip",
-            checksum: "d66ce628ad734a97bdac7225ab52657a3166fafbd32e5bdb7386009498f183f0"
+            url: "https://github.com/KaleyraVideo/iOSDeepFilterNet/releases/download/0.0.35/DeepFilterNet.xcframework.zip",
+            checksum: "b22c79ed936eea5bf4915e02777ae2cc80ccc089ae84304dd6612869376879ca"
         ),
     ]
 )
