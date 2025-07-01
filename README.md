@@ -79,8 +79,8 @@ df_set_atten_lim(state, 30)
 // Retrieve the audio byte buffer according to your implementation;
 
 [...]
-public func removeNoise(from buffer: UnsafeMutablePointer<Int16>) -> Float {
-    df_process_frame(state, buffer)
+public func removeNoise(from buffer: UnsafeMutablePointer<Int16>, bufferSize: Int32) -> Float {
+    df_process_frame(state, buffer, bufferSize)
 }
 
 // Release resources when done
